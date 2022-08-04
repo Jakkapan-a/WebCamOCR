@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OCR-WebCam", "CameraToText\OCR-WebCam.csproj", "{69C5558A-B20D-42CB-86BA-B94FADE5134D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69C5558A-B20D-42CB-86BA-B94FADE5134D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69C5558A-B20D-42CB-86BA-B94FADE5134D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69C5558A-B20D-42CB-86BA-B94FADE5134D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69C5558A-B20D-42CB-86BA-B94FADE5134D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F86626D7-D86B-432D-8AC1-BCFAD6461767}
+	EndGlobalSection
+EndGlobal
