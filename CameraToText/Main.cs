@@ -8,9 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AForge.Video;
+using AForge.Imaging;
 using AForge.Video.DirectShow;
 using System.IO;
 using Tesseract;
+using AForge.Imaging.Filters;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CameraToText
 {
@@ -23,7 +26,7 @@ namespace CameraToText
 
         FilterInfoCollection filter;
         VideoCaptureDevice device;
-
+        
         Rectangle Rect;
         Point LocationXY;
         Point LocationX1Y1;
@@ -87,7 +90,9 @@ namespace CameraToText
                     Bitmap cropIng = new Bitmap(Rect.Width, Rect.Height);
                     Graphics g = Graphics.FromImage(cropIng);
                     g.DrawImage(bitmap, 0, 0, Rect, GraphicsUnit.Pixel);
-                    cropIng.Save(filename);
+                    // Convert white to black                
+                    Bitmap gryImage = InvertGDI(cropIng);
+                    gryImage.Save(filename);
                     //TesseractEngine
                     if (System.IO.File.Exists(filename))
                     {
@@ -104,11 +109,13 @@ namespace CameraToText
                                 }
                             }
                         }
-                        pictureCrop.Image = Image.FromFile(filename);
+                        pictureCrop.Image = System.Drawing.Image.FromFile(filename);
                         pictureCrop.SizeMode = PictureBoxSizeMode.Zoom;
                         statusBar.Text = "OCR completed";
                     }                   
                 }
+
+                
                 //Delete file
                 /*if (System.IO.File.Exists(filename))
                 {
@@ -128,6 +135,35 @@ namespace CameraToText
                 statusBar.Text = "OCR failed";
             }
         }
+
+        private static Bitmap InvertGDI(System.Drawing.Image imgSource)
+        {
+            Bitmap bmpDest = null;
+
+            using (Bitmap bmpSource = new Bitmap(imgSource))
+            {
+                bmpDest = new Bitmap(bmpSource.Width, bmpSource.Height);
+
+                for (int x = 0; x < bmpSource.Width; x++)
+                {
+                    for (int y = 0; y < bmpSource.Height; y++)
+                    {
+
+                        Color clrPixel = bmpSource.GetPixel(x, y);
+
+                        clrPixel = Color.FromArgb(255 - clrPixel.R, 255 -
+                           clrPixel.G, 255 - clrPixel.B);
+
+                        bmpDest.SetPixel(x, y, clrPixel);
+                    }
+                }
+            }
+
+            return bmpDest;
+
+        }
+
+        
         private void MenuItemExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -175,5 +211,19 @@ namespace CameraToText
             return Rect;
         }
 
+        private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Open Dialog
+            OpenFileDialog openFile = new OpenFileDialog();
+            // Image file only
+            openFile.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF";
+            // Open Dialog
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                // Load image
+                pictureCam.Image = new Bitmap(openFile.FileName);
+                pictureCam.SizeMode = PictureBoxSizeMode.Zoom;
+            }
+        }
     }
 }

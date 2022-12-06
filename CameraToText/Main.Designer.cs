@@ -41,10 +41,9 @@ namespace CameraToText
             this.rtbOcrResult = new System.Windows.Forms.RichTextBox();
             this.btnScan = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnLeft = new System.Windows.Forms.Button();
-            this.btnRight = new System.Windows.Forms.Button();
             this.pictureCrop = new System.Windows.Forms.PictureBox();
             this.pictureCam = new System.Windows.Forms.PictureBox();
+            this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureCrop)).BeginInit();
@@ -55,7 +54,7 @@ namespace CameraToText
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 635);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 519);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(902, 22);
             this.statusStrip1.TabIndex = 0;
@@ -80,6 +79,7 @@ namespace CameraToText
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openFileToolStripMenuItem,
             this.MenuItemStop,
             this.MenuItemExit});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -89,14 +89,14 @@ namespace CameraToText
             // MenuItemStop
             // 
             this.MenuItemStop.Name = "MenuItemStop";
-            this.MenuItemStop.Size = new System.Drawing.Size(98, 22);
+            this.MenuItemStop.Size = new System.Drawing.Size(180, 22);
             this.MenuItemStop.Text = "Stop";
             this.MenuItemStop.Click += new System.EventHandler(this.MenuItemStop_Click);
             // 
             // MenuItemExit
             // 
             this.MenuItemExit.Name = "MenuItemExit";
-            this.MenuItemExit.Size = new System.Drawing.Size(98, 22);
+            this.MenuItemExit.Size = new System.Drawing.Size(180, 22);
             this.MenuItemExit.Text = "Exit";
             this.MenuItemExit.Click += new System.EventHandler(this.MenuItemExit_Click);
             // 
@@ -137,7 +137,7 @@ namespace CameraToText
             this.rtbOcrResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbOcrResult.Location = new System.Drawing.Point(522, 123);
             this.rtbOcrResult.Name = "rtbOcrResult";
-            this.rtbOcrResult.Size = new System.Drawing.Size(368, 386);
+            this.rtbOcrResult.Size = new System.Drawing.Size(368, 270);
             this.rtbOcrResult.TabIndex = 6;
             this.rtbOcrResult.Text = "";
             // 
@@ -165,33 +165,10 @@ namespace CameraToText
             this.label2.Text = "Convert to Text";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnLeft
-            // 
-            this.btnLeft.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLeft.Image = global::CameraToText.Properties.Resources.icons8_rotate_left_16;
-            this.btnLeft.Location = new System.Drawing.Point(457, 515);
-            this.btnLeft.Name = "btnLeft";
-            this.btnLeft.Size = new System.Drawing.Size(28, 23);
-            this.btnLeft.TabIndex = 8;
-            this.btnLeft.UseVisualStyleBackColor = true;
-            // 
-            // btnRight
-            // 
-            this.btnRight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRight.Image = global::CameraToText.Properties.Resources.icons8_rotate_right_16;
-            this.btnRight.Location = new System.Drawing.Point(488, 515);
-            this.btnRight.Name = "btnRight";
-            this.btnRight.Size = new System.Drawing.Size(28, 23);
-            this.btnRight.TabIndex = 8;
-            this.btnRight.UseVisualStyleBackColor = true;
-            // 
             // pictureCrop
             // 
-            this.pictureCrop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureCrop.Location = new System.Drawing.Point(522, 515);
+            this.pictureCrop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureCrop.Location = new System.Drawing.Point(522, 399);
             this.pictureCrop.Name = "pictureCrop";
             this.pictureCrop.Size = new System.Drawing.Size(368, 92);
             this.pictureCrop.TabIndex = 7;
@@ -199,7 +176,8 @@ namespace CameraToText
             // 
             // pictureCam
             // 
-            this.pictureCam.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureCam.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureCam.Location = new System.Drawing.Point(22, 31);
             this.pictureCam.Name = "pictureCam";
@@ -211,13 +189,18 @@ namespace CameraToText
             this.pictureCam.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureCam_MouseMove);
             this.pictureCam.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureCam_MouseUp);
             // 
+            // openFileToolStripMenuItem
+            // 
+            this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openFileToolStripMenuItem.Text = "Open File";
+            this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(902, 657);
-            this.Controls.Add(this.btnLeft);
-            this.Controls.Add(this.btnRight);
+            this.ClientSize = new System.Drawing.Size(902, 541);
             this.Controls.Add(this.pictureCrop);
             this.Controls.Add(this.rtbOcrResult);
             this.Controls.Add(this.pictureCam);
@@ -261,8 +244,7 @@ namespace CameraToText
         private System.Windows.Forms.ToolStripMenuItem MenuItemStop;
         private System.Windows.Forms.ToolStripMenuItem MenuItemExit;
         private System.Windows.Forms.PictureBox pictureCrop;
-        private System.Windows.Forms.Button btnRight;
-        private System.Windows.Forms.Button btnLeft;
+        private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;
     }
 }
 
